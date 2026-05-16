@@ -100,7 +100,6 @@ button_0=tk.Button(root,text='0',padx=25,pady=20,command=lambda: button_click(0)
 button_add=tk.Button(root,text='+',padx=25,pady=20,command= lambda: button_click("+"))
 button_equal=tk.Button(root,text='=',padx=50,pady=20,command= equals)
 button_delete=tk.Button(root,text='C',padx=25,pady=20,command= button_clear, bg="red")
-# button_clear=tk.Button(root, text="Clear All",padx=50, pady=20, command=button_clear_all)
 button_dots=tk.Button(root, text=".", padx=25, pady=20, command=lambda: button_click("."))
 
 button_subtract=tk.Button(root,text='-',padx=25,pady=20,command= lambda: button_click("-"))
