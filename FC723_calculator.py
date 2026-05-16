@@ -2,6 +2,74 @@
 import tkinter as tk
 import math 
 
+def button_click(num):
+    global equation_text, display_text
+    
+    available_functions = {
+    'sin': "sin",
+    'cos': "cos",
+    'tan': "tan",
+    "arcsin": "asin",
+    "arccos": "acos",
+    "arctan": "atan",
+    "√":"sqrt"
+     }
+    
+    if num in available_functions:
+        equation_text+=str(f"math.{available_functions[num]}(")
+        display_text+=str(num+"(")
+       
+
+    else:
+        equation_text+=str(num)
+        display_text+=str(num)
+      
+    equation_label.set(display_text)
+    
+def square():
+    global equation_text,display_text
+    
+    equation_text=str(f"math.pow({equation_text}, 2)")
+    
+    display_text+=str("²")
+    equation_label.set(display_text)
+
+def equals():
+    global equation_text, display_text
+    
+    try:
+        total=eval(equation_text)
+        
+        if isinstance(total, float):
+            total = round(total, 10)
+        
+       
+        equation_label.set(total)
+        
+        equation_text=total
+        display_text=total
+    except ZeroDivisionError:
+        equation_label.set("Undefined")
+        equation_text=""
+        display_text=""
+        
+    except SyntaxError:
+        equation_label.set("Undefined")
+        display_text=""
+        equation_text=""
+        
+    except ValueError:
+        equation_label.set("Undefined")
+        
+def button_clear():
+   global equation_text, display_text
+    
+   equation_label.set("")
+   equation_text=""
+   
+   display_text=""
+   
+
 window=tk.Tk()
 window.title("Simple Calculator")
 
@@ -52,3 +120,41 @@ button_parethesis=tk.Button(root, text="(", padx=25, pady=20, command=lambda: bu
 button_parethesis_1=tk.Button(root, text=")", padx=25, pady=20, command=lambda: button_click(")"))
 
 
+button_parethesis.grid(row=1,column=2, sticky = "nsew" )
+button_parethesis_1.grid(row=1,column=3, sticky="snew")
+button_square.grid(row=1, column=1, sticky = "nsew")
+button_sq_root.grid(row=1, column=0, sticky = "nsew")
+
+button_sin.grid(row=2, column=0, sticky = "nsew")
+button_cosine.grid(row=2, column=1, sticky = "nsew")
+button_tan.grid(row=2, column=2, sticky = "nsew")
+button_delete.grid(row=2,column=3, sticky = "nsew")
+
+button_arcsin.grid(row=3,column=0, sticky = "nsew")
+button_arccos.grid(row=3,column=1, sticky = "nsew")
+button_arctan.grid(row=3, column=2, sticky = "nsew")
+button_add.grid(row=3, column=3, sticky = "nsew")
+
+button_7.grid(row=4, column=0, sticky = "nsew")
+button_8.grid(row=4, column=1, sticky = "nsew")
+button_9.grid(row=4, column=2, sticky = "nsew")
+button_subtract.grid(row=4, column=3, sticky = "nsew")
+
+button_4.grid(row=5, column=0, sticky = "nsew")
+button_5.grid(row=5, column=1, sticky = "nsew")
+button_6.grid(row=5, column=2, sticky = "nsew")
+button_multiply.grid(row=5, column=3, sticky = "nsew")
+
+button_1.grid(row=6, column=0, sticky = "nsew")
+button_2.grid(row=6, column=1, sticky = "nsew")
+button_3.grid(row=6, column=2, sticky = "nsew")
+button_divide.grid(row=6, column=3, sticky = "nsew")
+
+button_0.grid(row=7, column=0, sticky = "nsew")
+button_dots.grid(row=7, column=1, sticky = "nsew")
+button_equal.grid(row=7, column=2, columnspan = 2, sticky = "nsew")
+
+
+
+
+root.mainloop()
